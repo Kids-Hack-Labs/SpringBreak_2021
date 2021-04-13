@@ -32,10 +32,6 @@ class Game():
             self.time_since_started = pygame.time.get_ticks()
 
             SceneManager()
-
-            #SCREENSHOT FUNCTIONALITY ->REMOVE LATER
-            self.flag_save = False
-            #END SCREENSHOT FUNCTIONALITY
             
             self.scene = None
             self.is_run = True
@@ -49,22 +45,12 @@ class Game():
             for evt in pygame.event.get():
                 if evt.type == QUIT:
                     self.quit()
-                #SCREENSHOT FUNCTIONALITY ->REMOVE LATER
-                if evt.type == MOUSEBUTTONUP:
-                    self.flag_save = True
-                #END SCREENSHOT FUNCTIONALITY
                     
         def update(self, delta):
             self.scene.update(delta)
 
         def render(self, target):
             self.scene.render(target)
-
-            #
-            if self.flag_save:
-                self.flag_save = False
-                pygame.image.save(self.screen, "./assets/_saves/gameplay.png")
-            #
             
             pygame.display.flip()
 
